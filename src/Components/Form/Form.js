@@ -1,25 +1,35 @@
 import React from 'react';
+//Style
+import './form.scss';
 
 const Form = () => {
     return (
-        <form>
-            <label>
+        <form className="form">
+            <label className="form-label">
                 Name
-                <input type="text" name="name" />
+                <input required className="form-label__input" type="text" name="name" />
             </label>
-            <label>
+            <label className="form-label">
+                LastName
+                <input required className="form-label__input" type="text" name="lastName" />
+            </label>
+            <label className="form-label">
+                Id
+                <input required className="form-label__input" type="text" name="id" />
+            </label>
+            <label className="form-label">
+                Birthday's Date
+                <input required className="form-label__input" type="Date" name="date" />
+            </label>
+            <label className="form-label">
                 E-mail
-                <input type="text" name="e-mail" />
+                <input required className="form-label__input" type="text" name="e-mail" />
             </label>
-            <label>
-                Date
-                <input type="Date" name="date" />
+            <label className="form-label">
+                GitHub User
+                <input required className="form-label__input" type="text" name="user" />
             </label>
-            <label>
-                Name
-                <input type="text" name="name" />
-            </label>
-            <input type="submit" value="Search profile" />
+            <input className="form-submit" type="submit" value="Search profile" />
         </form>
     );
 };
