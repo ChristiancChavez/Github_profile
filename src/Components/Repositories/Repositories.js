@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import Repository from '.././Repository';
 //Context
 import { GithubContext } from '../../context/gitHubContext';
+//Styles 
+import './repositories.scss';
 
 
 const Repositories = () => {
@@ -10,7 +12,7 @@ const Repositories = () => {
     const { repos } = useContext(GithubContext);
 
     return (
-        <div>
+        <div className="repositories">
             <table>
                 <thead>
                     <tr>
@@ -18,15 +20,14 @@ const Repositories = () => {
                         <th>Name</th>
                         <th>Url</th>
                         <th>Created</th>
-                        <th>Watchers</th>
                     </tr>
                 </thead>
                 <tbody>
                     {repos.map(repo => 
                         <Repository
+                            key={repo.id}
                             name={repo.name}
                             id={repo.id}
-                            watchers={repo.watchers_count}
                             created={repo.created_at}
                             url={repo.html_url}
                         />
@@ -34,6 +35,14 @@ const Repositories = () => {
                     }
                 </tbody>
             </table>
+            <div>
+                <button>Start</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>End</button>
+            </div>
         </div>
     );
 };

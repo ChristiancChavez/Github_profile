@@ -1,0 +1,9 @@
+.repository {
+    &__info {
+        border-bottom: 1px solid lightgray;
+        padding: 10px 0;
+        &__url {
+            text-decoration: none;
+        }
+    }
+}
