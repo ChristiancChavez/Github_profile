@@ -12,6 +12,8 @@ const GitHubContextProvider = (props) => {
     const [repos, setRepos] = useState([]);
     const [profile, setProfile] = useState({});
     const [showProfile, setShowProfile] = useState(false);
+    const [numRepos, setNumRepos] = useState(0);
+    const reposPerPage = 10;
 
 
     return (
@@ -35,7 +37,10 @@ const GitHubContextProvider = (props) => {
                     profile, 
                     setProfile,
                     showProfile, 
-                    setShowProfile
+                    setShowProfile,
+                    numRepos, 
+                    setNumRepos,
+                    reposPerPage
                 }
             }
         >

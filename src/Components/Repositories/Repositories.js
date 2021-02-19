@@ -9,7 +9,10 @@ import './repositories.scss';
 
 const Repositories = () => {
 
-    const { repos } = useContext(GithubContext);
+    const { repos, numRepos } = useContext(GithubContext);
+    const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
+    const tabsNumberRepos = range(1, numRepos, 1);
+    
 
     return (
         <div className="repositories">
@@ -35,13 +38,12 @@ const Repositories = () => {
                     }
                 </tbody>
             </table>
-            <div>
-                <button>Start</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>End</button>
+            <div className="repositories-tabs">
+                <button className="repositories-tabs__tab" >Start</button>
+                {tabsNumberRepos.map(tabNumberRepos => 
+                    <button className="repositories-tabs__tab">{tabNumberRepos}</button>   
+                )}
+                <button className="repositories-tabs__tab">End</button>
             </div>
         </div>
     );

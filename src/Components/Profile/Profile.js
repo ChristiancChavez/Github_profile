@@ -11,7 +11,7 @@ import { GithubContext } from '../../context/gitHubContext';
 
 const Profile = () => {
 
-    const { name, lastName, date, email, user, company, setRepos, profile, showProfile } = useContext(GithubContext);
+    const { name, lastName, date, email, user, company, setRepos, profile, showProfile, setNumRepos, reposPerPage } = useContext(GithubContext);
     const [showRepos, setShowRepos] = useState(false);
 
     const handleGetRepos = async () => {
@@ -20,6 +20,9 @@ const Profile = () => {
             console.log(fetchReposUser.data);
             setRepos(fetchReposUser.data);
             setShowRepos(true);
+            const numOfTabsRepos = fetchReposUser.data.length / reposPerPage;
+            console.log(numOfTabsRepos,'numOfTabsRepos');
+            setNumRepos(numOfTabsRepos);
         } catch (error) {
             console.log(error);
         }

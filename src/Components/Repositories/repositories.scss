@@ -1,3 +1,22 @@
 .repositories {
     font-size: 12px;
+    &-tabs {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        &__tab {
+            background: lightgray;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            &:hover {
+                background: black;
+                color: lightgray;
+            }
+        }
+    }
 }
