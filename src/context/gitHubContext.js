@@ -8,6 +8,11 @@ const GitHubContextProvider = (props) => {
     const [date, setDate] = useState('');
     const [email, setEmail] = useState('');
     const [user, setUser] = useState('');
+    const [company, setCompany] = useState('');
+    const [repos, setRepos] = useState([]);
+    const [profile, setProfile] = useState({});
+    const [showProfile, setShowProfile] = useState(false);
+
 
     return (
         <GithubContext.Provider 
@@ -23,6 +28,14 @@ const GitHubContextProvider = (props) => {
                     setEmail,
                     user, 
                     setUser,
+                    company, 
+                    setCompany,
+                    repos, 
+                    setRepos,
+                    profile, 
+                    setProfile,
+                    showProfile, 
+                    setShowProfile
                 }
             }
         >

@@ -1,41 +1,47 @@
-.form {
+.form-container {
     display: flex;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    align-items: center;
-    &-label {
-        display: flex;
-        flex-flow: column nowrap;
-        margin: 10px;
-        font-weight: 500;
-        background: lightgray;
-        border: none;
-        border-radius: 4px;
-        padding: 8px;
-        width: 150px;
-        height: 65px;
-        &__input {
+    flex-flow: column; 
+    .form {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        justify-items: center;
+        &-label {
+            display: flex;
+            flex-flow: column nowrap;
+            margin: 10px;
+            font-weight: 500;
+            background: lightgray;
             border: none;
-            background: white;
             border-radius: 4px;
-            padding: 5px;
-            margin-top: 15px;
-            min-height: 20px;
-            margin-bottom: 5px;
+            padding: 8px;
+            width: 150px;
+            height: 65px;
+            &__input {
+                border: none;
+                background: white;
+                border-radius: 4px;
+                padding: 5px;
+                margin-top: 15px;
+                min-height: 20px;
+                margin-bottom: 5px;
+            }
         }
-    }
-    &-submit {
-        border: none;
-        padding: 10px;
-        background: lightgray;
-        color: black;
-        cursor: pointer;
-        outline: none;
-        border-radius: 4px;
-        font-weight: 700;
-        &:hover {
-            background: black;
-            color: lightgray;
+        &-submit {
+            border: none;
+            padding: 10px;
+            background: lightgray;
+            color: black;
+            cursor: pointer;
+            outline: none;
+            border-radius: 4px;
+            font-weight: 700;
+            width: 150px;
+            margin: 30px auto 20px auto;
+            &:hover {
+                background: black;
+                color: lightgray;
+            }
         }
     }
 }
