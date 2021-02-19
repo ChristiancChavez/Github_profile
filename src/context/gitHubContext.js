@@ -5,21 +5,18 @@ const GitHubContextProvider = (props) => {
 
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [id, setId] = useState();
     const [date, setDate] = useState('');
     const [email, setEmail] = useState('');
     const [user, setUser] = useState('');
 
     return (
-        <GithubContext 
+        <GithubContext.Provider 
             value={
                 {
                     name, 
                     setName,
                     lastName, 
                     setLastName,
-                    id, 
-                    setId,
                     date, 
                     setDate,
                     email, 
@@ -30,7 +27,7 @@ const GitHubContextProvider = (props) => {
             }
         >
             {props.children}
-        </GithubContext>
+        </GithubContext.Provider>
     );
 };
 
