@@ -8,18 +8,20 @@ import axios from 'axios';
 
 const Form = () => {
 
-    const { setName, setLastName, setDate, setEmail, setUser, setCompany, user, setProfile, setShowProfile } = useContext(GithubContext);
+    const { setName, setLastName, setDate, setEmail, setUser, setCompany, user, setProfile, setShowProfile, name, lastName, date, email, company } = useContext(GithubContext);
 
     const handleProfileData = async (e, user) => {
         e.preventDefault();
-        console.log('hola soy search profile');
-        try {
-            const fetchUserGithub =  await axios.get(`https://api.github.com/users/${user}`);
-            console.log(fetchUserGithub.data);
-            setProfile(fetchUserGithub.data);
-        } catch (error) {
-            console.log(error);
+        if(name.trim() !==''&& lastName.trim() !==''&& date.trim() !==''&& email.trim() !==''&& user.trim() !==''&& company.trim() !=='') {
+            try {
+                const fetchUserGithub =  await axios.get(`https://api.github.com/users/${user}`);
+                console.log(fetchUserGithub.data);
+                setProfile(fetchUserGithub.data);
+            } catch (error) {
+                console.log(error);
+            }
         }
+        
         //setName(''); 
         //setLastName(''); 
         //setDate(''); 

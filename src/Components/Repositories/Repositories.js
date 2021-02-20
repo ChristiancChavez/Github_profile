@@ -5,17 +5,31 @@ import Repository from '.././Repository';
 import { GithubContext } from '../../context/gitHubContext';
 //Styles 
 import './repositories.scss';
+//Dependencies
+import axios from 'axios';
 
 
 const Repositories = () => {
 
-    const { repos, numRepos } = useContext(GithubContext);
+    const { repos, numRepos, user, reposPerPage, setRepos } = useContext(GithubContext);
     const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
     const tabsNumberRepos = range(1, numRepos, 1);
+
+    const handlePageRepos = async (tabNumberRepos) => {
+        const tabNumberReposString = tabNumberRepos.toString();
+        try {
+            const fetchPageRepo =  await axios.get(`https://api.github.com/users/${user}/repos?page=${tabNumberReposString}&per_page=${reposPerPage}`);
+            console.log(fetchPageRepo.data);
+            setRepos(fetchPageRepo.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     
 
     return (
         <div className="repositories">
+            <h3>Currently Repositories</h3>
             <table>
                 <thead>
                     <tr>
@@ -39,11 +53,11 @@ const Repositories = () => {
                 </tbody>
             </table>
             <div className="repositories-tabs">
-                <button className="repositories-tabs__tab" >Start</button>
+                <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabsNumberRepos[0])}>Start</button>
                 {tabsNumberRepos.map(tabNumberRepos => 
-                    <button className="repositories-tabs__tab">{tabNumberRepos}</button>   
+                    <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabNumberRepos)} key={tabNumberRepos}>{tabNumberRepos}</button>   
                 )}
-                <button className="repositories-tabs__tab">End</button>
+                <button className="repositories-tabs__tab" onClick={() => handlePageRepos((tabsNumberRepos.length) -1)}>End</button>
             </div>
         </div>
     );

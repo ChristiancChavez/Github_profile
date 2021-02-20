@@ -4,6 +4,9 @@ import './repository.scss';
 
 const Repository = ({ name, id, created, url }) => {
 
+    const transformDate = created.split('-');
+    const dateTransformed = `${transformDate[0]}-${transformDate[1]}`;
+
      return (
         <tr className="repository">
             <td className="repository__info">{id}</td>
@@ -11,7 +14,7 @@ const Repository = ({ name, id, created, url }) => {
             <td className="repository__info">
                 <a className="repository__info__url" href={url} target="blank">{url}</a>
             </td>
-            <td className="repository__info">{created}</td>
+            <td className="repository__info">{dateTransformed}</td>
         </tr>
     );
 };
