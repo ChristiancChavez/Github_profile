@@ -40,7 +40,9 @@ const Profile = () => {
     };
 
     useEffect(()=> {
-        handleGetFullRepos(reposPerPage);
+        if (user) {
+            handleGetFullRepos(reposPerPage);
+        }
     }, [user]);
 
     return (
