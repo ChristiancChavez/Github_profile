@@ -19,7 +19,6 @@ const Repositories = () => {
         const tabNumberReposString = tabNumberRepos.toString();
         try {
             const fetchPageRepo =  await axios.get(`https://api.github.com/users/${user}/repos?page=${tabNumberReposString}&per_page=${reposPerPage}`);
-            console.log(fetchPageRepo.data);
             setRepos(fetchPageRepo.data);
         } catch (error) {
             console.log(error);

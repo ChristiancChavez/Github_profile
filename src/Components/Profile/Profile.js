@@ -19,10 +19,8 @@ const Profile = () => {
     const handleGetFullRepos = async (reposPerPage) => {
         try {
             const fetchReposUser =  await axios.get(urlRepo);
-            console.log(fetchReposUser.data.length, 'lenght repos');
             const lengthFetchedRepos = fetchReposUser.data.length;
             const numOfTabsRepos = lengthFetchedRepos / reposPerPage;
-            console.log(numOfTabsRepos,'numOfTabsRepos');
             setNumRepos(numOfTabsRepos);
         } catch (error) {
             console.log(error);
