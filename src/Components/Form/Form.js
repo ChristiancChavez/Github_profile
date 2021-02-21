@@ -125,6 +125,10 @@ const Form = () => {
         setMessageFormWithoutData(false);
     };
 
+    const filterRepeatErrors = invalidData.filter((data, index) => {
+        return invalidData.indexOf(data) === index;
+    });
+
     return (
         <div className="form-container">
             <form className="form" onSubmit={(e) => handleProfileData(e, user)}>
@@ -166,8 +170,8 @@ const Form = () => {
                     <div className="form-message__list">
                         <span>Fill correctly these categories</span>
                         <ul>
-                            {!!invalidData.length && invalidData.map(data =>
-                                <li>{data}</li> )
+                            {!!invalidData.length && filterRepeatErrors.map(data =>
+                                <li key={data}>{data}</li> )
                             }
                         </ul>
                     </div>
