@@ -38,18 +38,20 @@ const Form = () => {
 
     const handleProfileData = async (e, user) => {
         e.preventDefault();
-        if(nameForm && lastNameForm && dateForm && emailForm && userForm && companyForm) {
+        if(!(errorName || errorCompany || errorEmail || errorDate || errorUser || errorLastName)) {
             try {
                 const fetchUserGithub =  await axios.get(`https://api.github.com/users/${user}`);
                 setProfile(fetchUserGithub.data);
                 setShowProfile(true);
                 setMessageFormWithoutData(false);
                 cleanFields();
+                console.log('VALIDOS CAMPOS');
             } catch (error) {
                 console.log(error);
             }
         } else {
             setMessageFormWithoutData(true);
+            console.log('INVALIDOS CAMPOS');
         }
     };
 
@@ -59,35 +61,37 @@ const Form = () => {
             
             case 'email':
                 const regexEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data);
+                setDataForm(data);
                 if( data.trim() === '' || !regexEmail) {
                     setInvalidData([...invalidData, text]);
                     setDataError(true);
-                    setData('');
                 } else {
                     setData(data);
                     setDataError(false);
-                    setDataForm(data);
+                    setInvalidData([...invalidData]);
                 }
                 break;
             case 'year':
+                setDataForm(data);
                 const getToday = new Date();
                 const currentYear = data.split('-');
                 const yearNumber = Number(currentYear[0]);
                 const yearString = currentYear[0].split('');
-                console.log( currentYear);
                 if(data !== getToday && yearNumber < 2005 && yearString.length === 4 && data.trim() !== ''){
                     setData(data);
                     setDataError(false);
                     setDataForm(data);
+                    setInvalidData([...invalidData]);
                 } else {
                     setInvalidData([...invalidData, `Birthday's date`]);
-                    setDataError(true);;
+                    setDataError(true);
                 }
                 break;
             case 'name': 
             case 'lastName': 
             case 'company':
             case 'user':
+                setDataForm(data);
                 if(testNumeric.test(data) || data.trim() === '') {
                     setInvalidData([...invalidData, text]);
                     setDataError(true);
@@ -96,6 +100,7 @@ const Form = () => {
                     setData(data);
                     setDataForm(data);
                     setDataError(false);
+                    setInvalidData([...invalidData]);
                 }
                 break;
             default:
@@ -113,7 +118,7 @@ const Form = () => {
 
     return (
         <div className="form-container">
-            <form className="form" onSubmit={(e) => handleProfileData(e, user)}>
+            <form noValidate className="form" onSubmit={(e) => handleProfileData(e, user)}>
                 <label className="form-label">
                     Name
                     <input required className="form-label__input" type="text" name="name" value={nameForm} onChange={(e)=> validationField(e.target.value, 'name', setErrorName, setName, setNameForm )} />
