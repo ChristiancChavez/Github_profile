@@ -44,34 +44,54 @@
             }
         }
         &-message {
-            display: flex;
-            flex-flow: row nowrap;
-            align-content: center;
-            justify-content: space-around;
-            font-size: 20px;
-            background: rgba(0, 0, 0, 0.808);
-            width: 250px;
-            padding: 15px 20px;
-            margin-top: 30px;
-            color: white;
             position: absolute;
-            border-radius: 4px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            &__list {
+            background: rgba(0, 0, 0, 0.808);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            top: 0;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            &-content {
                 display: flex;
-                flex-flow: column nowrap;
-            }
-            &__close {
-                background: transparent;
-                color: red;
-                border: none;
-                outline: none;
-                height: 20px;
-                cursor: pointer;
-                :hover {
-                    color: white;
+                flex-flow: row nowrap;
+                align-content: center;
+                justify-content: space-around;
+                font-size: 20px;
+                width: 250px;
+                padding: 15px 20px;
+                margin-top: 30px;
+                color: white;
+                border-radius: 4px;
+                &__list {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    span {
+                        color: lightgray;
+                        font-weight: 900;
+                        margin-left: 8px;
+                    }
+                    ul {
+                        list-style: none;
+                        li {
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+                &__close {
+                    background: transparent;
+                    color: red;
+                    border: none;
+                    outline: none;
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+                    font-size: 30px;
+                    cursor: pointer;
+                    &:hover {
+                        color: white;
+                    }
                 }
             }
         }
