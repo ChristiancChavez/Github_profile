@@ -20,3 +20,11 @@ export const requestPageRepos = async ( tabNumberReposString, user ) => {
         console.log(error);
     }
 };
+
+export const requestProfile = async ( user) => {
+    try {
+    return await axios.get(`https://api.github.com/users/${user}`);
+    } catch (error) {
+        console.log(error);
+    }
+};

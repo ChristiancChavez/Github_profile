@@ -7,6 +7,8 @@ import { GithubContext } from '../../context/gitHubContext';
 import axios from 'axios';
 //Components
 import Validation from '../Validation';
+//Request
+import { requestProfile } from '../../request/request';
 
 const Form = () => {
 
@@ -40,7 +42,7 @@ const Form = () => {
         e.preventDefault();
         if(!(errorName || errorCompany || errorEmail || errorDate || errorUser || errorLastName)) {
             try {
-                const fetchUserGithub =  await axios.get(`https://api.github.com/users/${user}`);
+                const fetchUserGithub =  await requestProfile(user);
                 setProfile(fetchUserGithub.data);
                 setShowProfile(true);
                 setMessageFormWithoutData(false);
