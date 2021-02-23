@@ -5,20 +5,20 @@ import Repository from '.././Repository';
 import { GithubContext } from '../../context/gitHubContext';
 //Styles 
 import './repositories.scss';
-//Dependencies
-import axios from 'axios';
+//Request
+import { requestPageRepos } from '../../request/request';
 
 
 const Repositories = () => {
 
-    const { repos, numRepos, user, reposPerPage, setRepos } = useContext(GithubContext);
+    const { repos, numRepos, setRepos, user } = useContext(GithubContext);
     const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
     const tabsNumberRepos = range(1, numRepos, 1);
 
-    const handlePageRepos = async (tabNumberRepos) => {
+    const handlePageRepos = async (tabNumberRepos, user) => {
         const tabNumberReposString = tabNumberRepos.toString();
         try {
-            const fetchPageRepo =  await axios.get(`https://api.github.com/users/${user}/repos?page=${tabNumberReposString}&per_page=${reposPerPage}`);
+            const fetchPageRepo =  await requestPageRepos(tabNumberReposString, user);
             setRepos(fetchPageRepo.data);
         } catch (error) {
             console.log(error);
@@ -52,11 +52,11 @@ const Repositories = () => {
                 </tbody>
             </table>
             <div className="repositories-tabs">
-                <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabsNumberRepos[0])}>Start</button>
+                <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabsNumberRepos[0], user)}>Start</button>
                 {tabsNumberRepos.map(tabNumberRepos => 
-                    <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabNumberRepos)} key={tabNumberRepos}>{tabNumberRepos}</button>   
+                    <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabNumberRepos, user)} key={tabNumberRepos}>{tabNumberRepos}</button>   
                 )}
-                <button className="repositories-tabs__tab" onClick={() => handlePageRepos((tabsNumberRepos.length) -1)}>End</button>
+                <button className="repositories-tabs__tab" onClick={() => handlePageRepos(tabsNumberRepos.length, user)}>End</button>
             </div>
         </div>
     );

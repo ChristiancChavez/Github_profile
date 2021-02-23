@@ -45,18 +45,15 @@ const Form = () => {
                 setShowProfile(true);
                 setMessageFormWithoutData(false);
                 cleanFields();
-                console.log('VALIDOS CAMPOS');
             } catch (error) {
                 console.log(error);
             }
         } else {
             setMessageFormWithoutData(true);
-            console.log('INVALIDOS CAMPOS');
         }
     };
 
     const validationField = (data, text, setDataError, setData,  setDataForm) => {
-        console.log(text);
         switch(text) {
             
             case 'email':
